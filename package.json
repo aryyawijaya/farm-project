@@ -1,0 +1,38 @@
+{
+  "name": "farm-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts",
+    "test": ""
+  },
+  "keywords": [
+    "farm",
+    "milk",
+    "production",
+    "TypeScript",
+    "Express.js",
+    "PostgreSQL"
+  ],
+  "author": "Aryya Bagus Padmanawijaya",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.4.4",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
