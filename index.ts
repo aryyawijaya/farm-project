@@ -1,6 +1,7 @@
 import express from 'express';
 import { createServer } from 'http';
 import configs from './bin/config';
+import { pgInit } from './bin/databases/postgresql/connection';
 
 const { PORT } = configs.server;
 
@@ -17,6 +18,18 @@ app.use((req: express.Request, res: express.Response) => {
 
 const server = createServer(app);
 
-server.listen(PORT, () => {
-  console.info(`Server listening at port: ${PORT}`);
-});
+const startServer = async () => {
+  const scope = 'startServer';
+  try {
+    await pgInit();
+    server.listen(PORT, () => {
+      console.info(`INFO: Server listening at port: ${PORT}`);
+    });
+  } catch (error) {
+    console.error(
+      `ERROR: Cannot start server; REASON: ${error}; SCOPE: ${scope}`,
+    );
+  }
+};
+
+startServer();
