@@ -3,7 +3,7 @@ CREATE DATABASE farm
     OWNER = postgres
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
-    IS_TEMPLATE = True;
+    IS_TEMPLATE = False;
 
 
 BEGIN;
@@ -18,9 +18,9 @@ DROP TABLE IF EXISTS public.owner;
 CREATE TABLE IF NOT EXISTS public.owner
 (
     id bigserial NOT NULL,
-    name character varying(50)[],
-    email character varying(50)[] NOT NULL,
-    password character varying(50)[] NOT NULL,
+    name character varying(50),
+    email character varying(50) NOT NULL,
+    password character varying(100) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS public.cattleman
 (
     id bigserial NOT NULL,
     "createdBy" bigint NOT NULL,
-    name character varying(50)[],
-    username character varying(50)[] NOT NULL,
-    password character varying(50)[] NOT NULL,
+    name character varying(50),
+    username character varying(50) NOT NULL,
+    password character varying(100) NOT NULL,
     "createdAt" timestamp with time zone NOT NULL,
     PRIMARY KEY (id)
 );
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS public.transaction
     id bigserial NOT NULL,
     "inputtedBy" bigint NOT NULL,
     volume double precision NOT NULL,
-    buyer character varying(50)[],
+    buyer character varying(50),
     price double precision NOT NULL,
     date timestamp with time zone NOT NULL,
     "createdAt" timestamp with time zone NOT NULL,
