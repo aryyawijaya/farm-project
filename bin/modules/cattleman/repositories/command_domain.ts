@@ -7,7 +7,7 @@ import configs from '../../../config';
 
 const { SALT_ROUNDS } = configs.hash;
 
-class Cattleman {
+class CattlemanCommand {
   private command: Command;
   constructor(pg: PostgreSQL) {
     this.command = new Command(pg);
@@ -42,4 +42,4 @@ class Cattleman {
   }
 }
 
-export default Cattleman;
+export default CattlemanCommand;

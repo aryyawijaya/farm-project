@@ -5,7 +5,7 @@ import { OwnerType, PayloadLoginOwner } from './query_model';
 import { generateAccessToken } from '../../../auth/jwt';
 import { compare } from 'bcrypt';
 
-class Owner {
+class OwnerQuery {
   private query: Query;
   constructor(pg: PostgreSQL) {
     this.query = new Query(pg);
@@ -13,8 +13,11 @@ class Owner {
 
   async login(payload: PayloadLoginOwner) {
     const { email, password } = payload;
-    const findOwner: OwnerType = (await this.query.findOwnerByEmail(email))[0];
-    if (isEmpty(findOwner) || !(await compare(password, findOwner.password))) {
+    const foundOwner: OwnerType = (await this.query.findOwnerByEmail(email))[0];
+    if (
+      isEmpty(foundOwner) ||
+      !(await compare(password, foundOwner.password))
+    ) {
       console.info(`INFO: Unauthorized client`);
       return {
         ok: false,
@@ -26,9 +29,9 @@ class Owner {
     const payloadToken = {
       role: 'OWNER',
       data: {
-        id: findOwner.id,
-        name: findOwner.name,
-        email: findOwner.email,
+        id: foundOwner.id,
+        name: foundOwner.name,
+        email: foundOwner.email,
       },
     };
     const accessToken = generateAccessToken(payloadToken);
@@ -43,4 +46,4 @@ class Owner {
   }
 }
 
-export default Owner;
+export default OwnerQuery;
