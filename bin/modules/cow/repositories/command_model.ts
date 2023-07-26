@@ -41,3 +41,11 @@ export const editCowSchema = Joi.object({
   deadday: Joi.date().optional().default(null),
   weight: Joi.number().optional().default(null),
 });
+
+export type PayloadDeleteCow = {
+  id: number;
+};
+
+export const deleteCowSchema = Joi.object({
+  id: Joi.number().required(),
+});

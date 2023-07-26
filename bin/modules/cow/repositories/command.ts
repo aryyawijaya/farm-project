@@ -49,6 +49,21 @@ class Command {
     };
     return await this.pg.query(query);
   }
+
+  async deleteCow(id: number) {
+    const query: QueryConfig = {
+      text: 'DELETE FROM public.cow WHERE id=$1 RETURNING *',
+      values: [id],
+    };
+    return await this.pg.query(query);
+  }
+
+  async findAllCow() {
+    const query: QueryConfig = {
+      text: 'SELECT * FROM public.cow',
+    };
+    return await this.pg.query(query);
+  }
 }
 
 export default Command;
