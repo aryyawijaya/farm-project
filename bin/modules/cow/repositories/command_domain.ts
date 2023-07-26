@@ -1,7 +1,7 @@
 import moment from 'moment';
 import PostgreSQL from '../../../databases/postgresql/db';
 import Command from './command';
-import { AddedCow, PayloadAddCow } from './command_model';
+import { AddedCow, PayloadAddCow, PayloadEditCow } from './command_model';
 
 class CowCommand {
   private command: Command;
@@ -30,6 +30,28 @@ class CowCommand {
       status: 201,
       message: 'Success add new cow',
       data: addedCow,
+    };
+  }
+
+  async edit(payload: PayloadEditCow) {
+    const { id, updatedBy, name, birthday, deadday, weight } = payload;
+    const updatedAt = moment();
+    const editedCow = (
+      await this.command.editCow(
+        id,
+        updatedBy,
+        name,
+        birthday,
+        deadday,
+        weight,
+        updatedAt,
+      )
+    )[0];
+    return {
+      ok: true,
+      status: 200,
+      message: 'Success edit a cow',
+      data: editedCow,
     };
   }
 }
