@@ -15,11 +15,7 @@ export const registerCattlemanSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-export type RegisteredCattleman = {
+export interface RegisteredCattleman extends PayloadRegisterCattleman {
   id: number;
-  createdBy: number;
-  name: string;
-  username: string;
-  password: string;
   createdAt: Moment;
-};
+}

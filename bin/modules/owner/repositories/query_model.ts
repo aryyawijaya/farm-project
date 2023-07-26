@@ -10,9 +10,7 @@ export const loginOwnerSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-export type OwnerType = {
+export interface OwnerType extends PayloadLoginOwner {
   id: string;
   name: string;
-  email: string;
-  password: string;
-};
+}

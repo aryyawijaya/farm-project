@@ -52,3 +52,19 @@ export const isOwner = (
   }
   next();
 };
+
+export const isCattleman = (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (req.user?.role !== 'CATTLEMAN') {
+    return res.status(403).send({
+      ok: false,
+      status: 403,
+      message: 'You have not access to this resource',
+      data: {},
+    });
+  }
+  next();
+};
