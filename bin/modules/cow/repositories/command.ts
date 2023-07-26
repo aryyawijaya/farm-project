@@ -33,6 +33,22 @@ class Command {
     };
     return await this.pg.query(query);
   }
+
+  async editCow(
+    id: number,
+    updatedBy: number,
+    name: string,
+    birthday: Moment,
+    deadday: Moment,
+    weight: number,
+    updatedAt: Moment,
+  ) {
+    const query: QueryConfig = {
+      text: 'UPDATE public.cow SET "updatedBy"=$1, name=$2, birthday=$3, deadday=$4, weight=$5, "updatedAt"=$6 WHERE id=$7 RETURNING *',
+      values: [updatedBy, name, birthday, deadday, weight, updatedAt, id],
+    };
+    return await this.pg.query(query);
+  }
 }
 
 export default Command;
