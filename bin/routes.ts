@@ -12,5 +12,6 @@ router.post(
   isOwner,
   cattlemanHanlder.registerCattleman,
 );
+router.post('/cattleman/v1/login', cattlemanHanlder.loginCattleman);
 
 export default router;
