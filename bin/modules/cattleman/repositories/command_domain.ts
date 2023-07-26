@@ -30,14 +30,7 @@ class CattlemanCommand {
       ok: true,
       status: 201,
       message: 'Success register new cattleman',
-      data: {
-        id: registeredCattleman.id,
-        createdBy: registeredCattleman.createdBy,
-        name: registeredCattleman.name,
-        username: registeredCattleman.username,
-        password: registeredCattleman.password,
-        createdAt: registeredCattleman.createdAt,
-      },
+      data: registeredCattleman,
     };
   }
 }
