@@ -4,8 +4,10 @@ import { AuthenticatedRequest } from '../../../helpers/common_types';
 import { validatePayload } from '../../../utils/validator';
 import {
   PayloadAddCow,
+  PayloadDeleteCow,
   PayloadEditCow,
   addCowSchema,
+  deleteCowSchema,
   editCowSchema,
 } from '../repositories/command_model';
 import CowCommand from '../repositories/command_domain';
@@ -78,6 +80,56 @@ export const editCow = async (req: AuthenticatedRequest, res: Response) => {
 
   try {
     const result = await cowCommand.edit(validatedPayload);
+    res.status(result.status).send(result);
+  } catch (error) {
+    console.error(`ERROR; REASON: ${error}; SCOPE: ${scope}`);
+    res.status(500).send({
+      ok: false,
+      status: 500,
+      message: error,
+      data: {},
+    });
+  }
+};
+
+export const deleteCow = async (req: AuthenticatedRequest, res: Response) => {
+  const scope = 'deleteCow';
+
+  const payload: PayloadDeleteCow = {
+    id: Number(req.params.id),
+  };
+  let validatedPayload: PayloadDeleteCow;
+  try {
+    validatedPayload = validatePayload(payload, deleteCowSchema);
+  } catch (error) {
+    console.error(`ERROR; REASON: ${error}; SCOPE: ${scope}`);
+    return res.status(400).send({
+      ok: false,
+      status: 400,
+      message: error,
+      data: {},
+    });
+  }
+
+  try {
+    const result = await cowCommand.delete(validatedPayload);
+    res.status(result.status).send(result);
+  } catch (error) {
+    console.error(`ERROR; REASON: ${error}; SCOPE: ${scope}`);
+    res.status(500).send({
+      ok: false,
+      status: 500,
+      message: error,
+      data: {},
+    });
+  }
+};
+
+export const getAllCow = async (req: AuthenticatedRequest, res: Response) => {
+  const scope = 'getAllCow';
+
+  try {
+    const result = await cowCommand.getAll();
     res.status(result.status).send(result);
   } catch (error) {
     console.error(`ERROR; REASON: ${error}; SCOPE: ${scope}`);

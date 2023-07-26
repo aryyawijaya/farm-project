@@ -16,5 +16,7 @@ router.post(
 router.post('/cattleman/v1/login', cattlemanHanlder.loginCattleman);
 router.post('/cow/v1/add', verifyJwt, isCattleman, cowHandler.addCow);
 router.put('/cow/v1/edit/:id', verifyJwt, isCattleman, cowHandler.editCow);
+router.delete('/cow/v1/delete/:id', verifyJwt, isOwner, cowHandler.deleteCow);
+router.get('/cow/v1', verifyJwt, cowHandler.getAllCow);
 
 export default router;
