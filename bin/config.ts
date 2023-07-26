@@ -13,6 +13,13 @@ const configs = {
     PASSWORD: process.env.PGPASSWORD,
     PORT: process.env.PGPORT,
   },
+  jwt: {
+    ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
+    ACCESS_TOKEN_EXPIRES: process.env.ACCESS_TOKEN_EXPIRES,
+  },
+  hash: {
+    SALT_ROUNDS: process.env.SALT_ROUNDS,
+  },
 };
 
 export default configs;

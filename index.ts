@@ -2,11 +2,14 @@ import express from 'express';
 import { createServer } from 'http';
 import configs from './bin/config';
 import { pgInit } from './bin/databases/postgresql/connection';
+import router from './bin/routes';
 
 const { PORT } = configs.server;
 
 const app = express();
 
+app.use(express.json());
+app.use(router);
 app.use((req: express.Request, res: express.Response) => {
   res.status(404).send({
     ok: false,
