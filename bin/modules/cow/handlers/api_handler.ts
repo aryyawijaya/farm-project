@@ -11,10 +11,11 @@ import {
   editCowSchema,
 } from '../repositories/command_model';
 import CowCommand from '../repositories/command_domain';
+import CowQuery from '../repositories/query_domain';
 
 const pg = new PostgreSQL();
 const cowCommand = new CowCommand(pg);
-// const cattlemanQuery = new CattlemanQuery(pg);
+const cowQuery = new CowQuery(pg);
 
 export const addCow = async (req: AuthenticatedRequest, res: Response) => {
   const scope = 'addCow';
@@ -129,7 +130,7 @@ export const getAllCow = async (req: AuthenticatedRequest, res: Response) => {
   const scope = 'getAllCow';
 
   try {
-    const result = await cowCommand.getAll();
+    const result = await cowQuery.getAll();
     res.status(result.status).send(result);
   } catch (error) {
     console.error(`ERROR; REASON: ${error}; SCOPE: ${scope}`);

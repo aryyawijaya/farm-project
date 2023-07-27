@@ -70,18 +70,6 @@ class CowCommand {
       data: deletedCow,
     };
   }
-
-  async getAll() {
-    const allCow = await this.command.findAllCow();
-    return {
-      ok: true,
-      status: 200,
-      message: 'Success find all cow',
-      data: {
-        cows: allCow,
-      },
-    };
-  }
 }
 
 export default CowCommand;
