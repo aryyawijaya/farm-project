@@ -3,6 +3,7 @@ import * as cattlemanHanlder from './modules/cattleman/handlers/api_handler';
 import * as ownerHanlder from './modules/owner/handlers/api_handler';
 import * as cowHandler from './modules/cow/handlers/api_handler';
 import * as milkProductionHanlder from './modules/milk-production/handlers/api_handler';
+import * as transactionHandler from './modules/transaction/handlers/api_handler';
 import { isCattleman, isOwner, verifyJwt } from './middlewares/auth';
 
 const router = Router();
@@ -26,5 +27,12 @@ router.post(
   milkProductionHanlder.inputMilk,
 );
 router.get('/milk-production/v1', verifyJwt, milkProductionHanlder.getMilkADay);
+router.post(
+  '/transaction/v1/input',
+  verifyJwt,
+  isCattleman,
+  transactionHandler.inputTransaction,
+);
+router.get('/transaction/v1', verifyJwt, transactionHandler.getTransactionADay);
 
 export default router;
