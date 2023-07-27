@@ -1,6 +1,6 @@
 # Case Study #
 
-## Relation Schema ##
+## Tables ##
 <a href="https://ibb.co/c3HcTzw"><img src="https://i.ibb.co/xL0S5VY/tables.png" alt="tables" border="0"></a>
 
 ## Features ##
@@ -17,7 +17,12 @@ https://documenter.getpostman.com/view/15365188/2s946pZ8wo
 ### 2. Setup env ###
 - Create .env file from .env_sample file
 - Set user, password, and port postgres
-### 3. Start the server ###
+
+### 3. Install dependecies ###
+```
+npm install
+```
+### 4. Start the server ###
 ```
 npm start
 ```

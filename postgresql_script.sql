@@ -128,6 +128,6 @@ ALTER TABLE IF EXISTS public.transaction
 
 INSERT INTO public.owner(
 	name, email, password)
-	VALUES ("onwer 1", "owner1@gmail.com", "$2b$08$MwihJx0EpMgR0dRruV.0e.4KPZ1qE15HLwUk1.S0ZQ7.RuuZq2neG");
+	VALUES ('owner 1', 'owner1@gmail.com', '$2b$08$MwihJx0EpMgR0dRruV.0e.4KPZ1qE15HLwUk1.S0ZQ7.RuuZq2neG');
 
 END;
